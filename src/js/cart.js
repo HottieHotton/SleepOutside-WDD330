@@ -26,5 +26,9 @@ function cartItemTemplate(item) {
   
   return newItem;
 }
+  // Call updateCartCount on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCounter();
+  });
 
 renderCartContents();

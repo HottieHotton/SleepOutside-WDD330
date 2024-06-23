@@ -36,8 +36,7 @@ export default class ProductDetails {
     let cart = getLocalStorage("so-cart") || [];
     cart.push(this.product)
     setLocalStorage("so-cart", cart);
-    updateCartCounter(cart)
-    return cart
+    updateCartCounter();
   }
   renderProductDetails(selector) {
     const element = document.querySelector(selector);
@@ -48,8 +47,15 @@ export default class ProductDetails {
   }
 }
 
-export function updateCartCounter(cart){
+
+export function updateCartCounter(){
+  let cart = getLocalStorage("so-cart") || [];
   const cartCountElement = document.getElementById("cart-count");
   console.log(cartCountElement);
   cartCountElement.textContent = cart.length;
 }
+
+  // Call updateCartCount on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartCounter();
+  });

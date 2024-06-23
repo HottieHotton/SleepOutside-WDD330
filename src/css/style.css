@@ -209,7 +209,7 @@ button {
   display: inline-block;
 }
 
-.cart-container .fa-shopping-cart {
+.cart-count-container {
   font-size: 24px;
 }
 
