@@ -1,6 +1,6 @@
 export default class Alert {
     constructor() {
-        this.alertsPath = "../public/json/alerts.json";
+        this.alertsPath = "./public/json/alerts.json";
     }
 
     async getAlerts() {
