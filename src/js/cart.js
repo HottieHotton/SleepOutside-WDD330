@@ -14,18 +14,15 @@ function renderCartContents() {
     document.querySelector(".total").style.display = "grid";
     document.querySelector(".total").innerHTML = `<h3>Total: $${totalPrice}</h3>`
     document.querySelector(".product-list").innerHTML = htmlItems.join("");
-  }
-  const htmlItems = cartItems.map((item) => cartItemTemplate(item));
-  document.querySelector(".product-list").innerHTML = htmlItems.join("");
-
-  //add click event listener to each remove button
-  const removeButtons = document.querySelectorAll(".remove-item");
-  removeButtons.forEach((button) => {
+      //add click event listener to each remove button
+    const removeButtons = document.querySelectorAll(".remove-item");
+    removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
       const productId = event.target.dataset.id;
       removeFromCart(productId);
+      });
     });
-  });
+    }
 }
 
 function removeFromCart(productId) {
