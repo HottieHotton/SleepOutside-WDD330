@@ -3,7 +3,6 @@ import { updateCartCounter } from "./productdetails.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  console.log(cartItems)
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 }
@@ -27,7 +26,7 @@ function cartItemTemplate(item) {
   return newItem;
 }
   // Call updateCartCount on page load
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     updateCartCounter();
   });
 

@@ -10,6 +10,6 @@ listing.init();
 
 
   // Call updateCartCount on page load
-  document.addEventListener('DOMContentLoaded', () => {
+  document.addEventListener("DOMContentLoaded", () => {
     updateCartCounter();
   });
