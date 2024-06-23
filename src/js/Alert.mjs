@@ -3,29 +3,27 @@ export default class Alert {
         this.alertsPath = "../public/json/alerts.json";
     }
 
-    getAlerts() {
-        return fetch(this.alertsPath)
-            .then(res => res.json())
-            .then(data => {
-                console.log(data) // testing in console
+    async getAlerts() {
+        const res = await fetch(this.alertsPath);
+        const data = await res.json();
+        console.log(data); // testing in console
+        window.alert = function () {
+            const alertSection = document.createElement("section");
+            alertSection.classList.add("alert-list");
 
-                window.alert = function() {
-                    const alertSection = document.createElement("section");
-                    alertSection.classList.add("alert-list");
+            const alert = document.createElement("p");
+            alert.classList.add("alert");
 
-                    const alert = document.createElement("p");
-                    alert.classList.add("alert")
-
-                    const alertButton = document.createElement("button");
-                    alertButton.innerHTML = "OK";
-                    alertButton.setAttribute("style", `
+            const alertButton = document.createElement("button");
+            alertButton.innerHTML = "OK";
+            alertButton.setAttribute("style", `
                         font-size:0.8em;
                         background-color: #ffc592;
                         color: ${data[0].color};
                         border-radius: 50px;
-                        `)
-                    
-                    alert.setAttribute("style", `
+                        `);
+
+            alert.setAttribute("style", `
                         padding: 20px;
                         margin: 5px;
                         border-radius: 2px;
@@ -40,22 +38,22 @@ export default class Alert {
                         justify-content: center;
                         `);
 
-                    alert.innerHTML = `<span style="margin-right:25px; font-size:0.8em; color:${data[0].color}">${data[0].message}</span>`;
-                    alert.appendChild(alertButton);
+            alert.innerHTML = `<span style="margin-right:25px; font-size:0.8em; color:${data[0].color}">${data[0].message}</span>`;
+            alert.appendChild(alertButton);
 
-                    alertButton.addEventListener("click", (e)=> {
-                        alert.remove();
-                    });
+            alertButton.addEventListener("click", (e) => {
+                alert.remove();
+            });
 
-                    if (document.querySelector(".alert-list")) {
-                        
-                        document.querySelector(".alert-list").appendChild(alert);
-                    } else {
-                        document.querySelector("main").prepend(alertSection);
-                        alertSection.prepend(alert);
-                    }
+            if (document.querySelector(".alert-list")) {
 
-                    alertSection.setAttribute("style", `
+                document.querySelector(".alert-list").appendChild(alert);
+            } else {
+                document.querySelector("main").prepend(alertSection);
+                alertSection.prepend(alert);
+            }
+
+            alertSection.setAttribute("style", `
                         position: fixed;
                         top: 60px;
                         right: 20px;
@@ -63,12 +61,10 @@ export default class Alert {
                         display: flex;
                         flex-direction: column;
                         `);
-                    
-                }
 
-                data.forEach(alertItem => {
-                    alert(alertItem.message)
-                });
-            })
+        };
+        data.forEach(alertItem => {
+            alert(alertItem.message);
+        });
     } 
 }
