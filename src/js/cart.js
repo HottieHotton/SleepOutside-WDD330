@@ -2,7 +2,19 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
-  console.log(cartItems)
+    if (cartItems == undefined || cartItems.length <= 0) {
+    window.alert("Your cart is empty, please add an item!");
+    window.location.href="/index.html";
+  } else {
+    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    let totalPrice = 0.00;
+    cartItems.forEach(cost => {
+      totalPrice += cost.FinalPrice;
+    });
+    document.querySelector(".total").style.display = "grid";
+    document.querySelector(".total").innerHTML = `<h3>Total: $${totalPrice}</h3>`
+    document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  }
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
 
@@ -21,6 +33,7 @@ function removeFromCart(productId) {
   cartItems = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
+
 }
 
 function cartItemTemplate(item) {
