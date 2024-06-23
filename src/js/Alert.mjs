@@ -7,7 +7,7 @@ export default class Alert {
         return fetch(this.alertsPath)
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                console.log(data) // testing in console
             })
     } 
 }
