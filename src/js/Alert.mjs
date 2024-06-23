@@ -8,6 +8,10 @@ export default class Alert {
             .then(res => res.json())
             .then(data => {
                 console.log(data) // testing in console
+
+                data.forEach(alertItem => {
+                    alert(alertItem.message)
+                });
             })
     } 
 }
