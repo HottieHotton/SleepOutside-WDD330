@@ -28,7 +28,6 @@ export default class Alert {
                         margin: 5px;
                         border-radius: 2px;
                         border-left: solid 8px #f0a868;
-                        box-shadow: 0 10px 5px 0 #00000022;
 
                         background-color: ${data[0].background};
 
