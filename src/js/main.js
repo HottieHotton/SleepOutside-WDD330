@@ -9,9 +9,9 @@ const listing = new ProductList("Tents", dataSource, element);
 
 listing.init();
 
-loadHeaderFooter();
+async function init(){
+  await loadHeaderFooter();
+  await updateCartCounter();
+}
 
-  // Call updateCartCount on page load
-  document.addEventListener("DOMContentLoaded", () => {
-    updateCartCounter();
-  });
+init();

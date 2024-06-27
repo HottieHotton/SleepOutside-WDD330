@@ -2,9 +2,6 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { updateCartCounter } from "./productdetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
-loadHeaderFooter();
-
-
 
 function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
@@ -36,7 +33,7 @@ function removeFromCart(productId) {
   cartItems = cartItems.filter((item) => item.Id !== productId);
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
-
+  updateCartCounter();
 }
 
 function cartItemTemplate(item) {
@@ -61,3 +58,9 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
+async function init(){
+  await loadHeaderFooter();
+  await updateCartCounter();
+}
+
+init();
