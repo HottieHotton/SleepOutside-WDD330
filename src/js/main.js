@@ -11,8 +11,3 @@ listing.init();
 
 await loadHeaderFooter();
 await updateCartCounter();
-
-  // Call updateCartCount on page load
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   updateCartCounter();
-  // });

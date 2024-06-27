@@ -4,11 +4,11 @@ import ProductDetails from "./productdetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 import { updateCartCounter } from "./productdetails.mjs";
 
-await loadHeaderFooter();
-await updateCartCounter()
-
 const productId = getParams("product");
 const dataSource = new ProductData("tents");
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
+
+await loadHeaderFooter();
+await updateCartCounter();
