@@ -10,5 +10,9 @@ const dataSource = new ProductData("tents");
 const product = new ProductDetails(productId, dataSource);
 product.init();
 
-await loadHeaderFooter();
-await updateCartCounter();
+async function init(){
+    await loadHeaderFooter();
+    await updateCartCounter();
+  }
+  
+  init();

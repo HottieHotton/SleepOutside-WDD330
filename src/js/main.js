@@ -9,5 +9,9 @@ const listing = new ProductList("Tents", dataSource, element);
 
 listing.init();
 
-await loadHeaderFooter();
-await updateCartCounter();
+async function init(){
+  await loadHeaderFooter();
+  await updateCartCounter();
+}
+
+init();

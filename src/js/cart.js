@@ -58,5 +58,9 @@ function cartItemTemplate(item) {
 }
 
 renderCartContents();
-await loadHeaderFooter();
-await updateCartCounter();
+async function init(){
+  await loadHeaderFooter();
+  await updateCartCounter();
+}
+
+init();
