@@ -1,6 +1,8 @@
 import { setLocalStorage, getLocalStorage } from "./utils.mjs";
 import Alert from "./Alert.mjs";
 
+
+
 function productDetailsTemplate(product) {
   return `
   <section class="product-detail"> 

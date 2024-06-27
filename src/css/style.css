@@ -212,7 +212,7 @@ button {
   
 }
 
-.cart-count {
+#cart-count {
   position: absolute;
   top: -14px;
   right: -6px;
