@@ -233,16 +233,19 @@ button {
 /* Icon css*/
 
 .icon{
-  max-width: 20%;
+  max-width: 60%;
   padding: 1em;
 }
 
-a {
+a, a h2 {
   text-decoration: none;
+  color: var(--dark-grey);
 }
 
 .icon-products{
   text-align: center;
+  display: grid;
+  grid-template-columns: (4, 1fr);
 }
 
 @media screen and (min-width: 500px) {
