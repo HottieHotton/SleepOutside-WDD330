@@ -230,6 +230,28 @@ button {
   font-size: 1.1em;
 }
 
+/* Icon css*/
+
+.icon{
+  max-width: 60%;
+  padding: 1em;
+}
+
+a, a h2 {
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.icon-products{
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-products a img{
+  width: 100%;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
