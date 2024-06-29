@@ -244,8 +244,12 @@ a, a h2 {
 
 .icon-products{
   text-align: center;
-  display: grid;
-  grid-template-columns: (4, 1fr);
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-products a img{
+  width: 100%;
 }
 
 @media screen and (min-width: 500px) {
