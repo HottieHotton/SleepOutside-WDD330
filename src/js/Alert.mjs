@@ -6,7 +6,6 @@ export default class Alert {
     async getAlerts() {
         const res = await fetch(this.alertsPath);
         const data = await res.json();
-        console.log(data); // testing in console
         window.alert = function () {
             const alertSection = document.createElement("section");
             alertSection.classList.add("alert-list");

@@ -59,11 +59,13 @@ export default class ProductDetails {
 export function updateCartCounter(){
   let cart = getLocalStorage("so-cart") || [];
   const cartCountElement = document.getElementById("cart-count");
-  // console.log(cartCountElement);
-  cartCountElement.textContent = cart.length;
+  let total = 0;
+  if(cart[0].quantity != undefined){
+    cart.forEach((count) =>{
+      total += count.quantity
+    })
+  }else if(cart.length){
+    total = cart.length
+  }
+  cartCountElement.textContent = total;
 }
-
-  // Call updateCartCount on page load
-  // document.addEventListener("DOMContentLoaded", () => {
-  //   updateCartCounter();
-  // });
