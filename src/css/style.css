@@ -81,6 +81,33 @@ header {
   color: var(--tertiary-color);
 }
 
+.sort-container {
+  display: flex;
+  justify-content: flex-end; 
+  margin: 20px;
+}
+
+#sort-select {
+  appearance: none;
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#sort-select:hover,
+#sort-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.2);
+  outline: none;
+}
+
 button {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
