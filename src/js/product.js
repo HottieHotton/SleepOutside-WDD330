@@ -1,11 +1,10 @@
-import { getParams } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./productdetails.mjs";
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, getParams } from "./utils.mjs";
 import { updateCartCounter } from "./productdetails.mjs";
 
 const productId = getParams("product");
-const dataSource = new ProductData("tents");
+const dataSource = new ProductData();
 
 const product = new ProductDetails(productId, dataSource);
 product.init();
@@ -13,6 +12,6 @@ product.init();
 async function init(){
     await loadHeaderFooter();
     await updateCartCounter();
-  }
+}
   
-  init();
+init();
