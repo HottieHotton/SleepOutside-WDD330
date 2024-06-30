@@ -23,7 +23,11 @@ export default class ProductListing {
     if (list.length > 0) {
       this.renderList(list);
       document.querySelector(".title").innerHTML = this.category;
+
+      // breadcrumb
+      document.querySelector(".breadcrumb-item-category").innerHTML = `${this.category} (${list.length})`;      
     }
+
   }
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);

@@ -34,6 +34,11 @@ export default class ProductDetails {
     document
     .getElementById("addToCart")
     .addEventListener("click", this.addToCart.bind(this));
+
+    // breadcrumb
+    document.querySelector(".breadcrumb-item-category").innerHTML = this.product.Category;
+    document.querySelector(".breadcrumb-item-category").setAttribute("href", `/product-listing/index.html?category=${this.product.Category}`);
+    document.querySelector("#breadcrumb-item-product").innerHTML = this.product.NameWithoutBrand;
   }
   addToCart() {
     let cart = getLocalStorage("so-cart") || [];

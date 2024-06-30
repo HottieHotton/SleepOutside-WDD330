@@ -275,3 +275,22 @@ footer {
   display: none;
   text-align: right;
 }
+
+
+
+
+/* BREADCRUMB */
+#breadcrumb-list {
+  list-style:none;
+  font-size:15px;
+
+  display:flex;
+  flex-direction:row;
+  gap: 15px;
+
+  text-transform: capitalize;
+}
+#breadcrumb-item-home, .breadcrumb-item-category.productPage {
+  color: rgb(7, 53, 146);
+  text-decoration-line: underline;
+}
