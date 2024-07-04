@@ -40,14 +40,14 @@ export default class ProductDetails {
     document.querySelector(".breadcrumb-item-category").setAttribute("href", `/product-listing/index.html?category=${this.product.Category}`);
     document.querySelector("#breadcrumb-item-product").innerHTML = this.product.NameWithoutBrand;
   }
-  addToCart() {
-    let cart = getLocalStorage("so-cart") || [];
+  async addToCart() {
+    let cart = await getLocalStorage("so-cart") || [];
     cart.push(this.product)
-    setLocalStorage("so-cart", cart);
+    await setLocalStorage("so-cart", cart);
 
     const alert = new Alert();
     alert.getAlerts();
-
+    console.log(updateCartCounter());
     updateCartCounter();
 
   }
@@ -63,9 +63,25 @@ export default class ProductDetails {
 
 export function updateCartCounter(){
   let cart = getLocalStorage("so-cart") || [];
-  const cartCountElement = document.getElementById("cart-count");
-  let total = 0;
+  // let sortItems = cart;
+  // let uniqueIds = [];
+  // sortItems = sortItems.reduce((acc, item) => {
+  //   if (!uniqueIds.includes(item.Id)) {
+  //     uniqueIds.push(item.Id);
+  //     acc.push(item);
+  //     item.quantity = item.quantity || 1;
+  //   } else {
+  //     let existingItem = acc.find((i) => i.Id === item.Id);
+  //     if (existingItem) {
+  //       existingItem.quantity += 1;
+  //     }
+  //   }
+  //   return acc;
+  // }, []).then(setLocalStorage('so-cart', sortItems));
+  let cartCountElement = document.getElementById("cart-count");
+  let total;
   if(cart[0].quantity != undefined){
+    total=0;
     cart.forEach((count) =>{
       total += count.quantity
     })

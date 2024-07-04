@@ -108,7 +108,7 @@ header {
   outline: none;
 }
 
-button {
+button, #formButton {
   padding: 0.5em 2em;
   background-color: var(--secondary-color);
   color: white;
