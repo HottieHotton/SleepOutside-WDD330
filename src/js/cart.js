@@ -2,7 +2,7 @@ import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 import { updateCartCounter } from "./productdetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
-function renderCartContents() {
+export function renderCartContents() {
   const cartItems = getLocalStorage("so-cart");
   if (cartItems == undefined || cartItems.length <= 0) {
     window.alert("Your cart is empty, please add an item!");
@@ -17,14 +17,13 @@ function renderCartContents() {
         acc.push(item);
         item.quantity = item.quantity || 1;
       } else {
-        let existingItem = acc.find(i => i.Id === item.Id);
+        let existingItem = acc.find((i) => i.Id === item.Id);
         if (existingItem) {
           existingItem.quantity += 1; // Increment quantity if duplicate
         }
       }
       return acc;
     }, []);
-
 
     setLocalStorage("so-cart", sortItems);
 
@@ -36,8 +35,11 @@ function renderCartContents() {
     });
     document.querySelector(".total").style.display = "grid";
     document.querySelector(".total").innerHTML =
-      `<h3>Total: $${totalPrice}</h3>`;
-    document.querySelector(".cart-product-list").innerHTML = htmlItems.join("");
+      `<h3>Sub-Total: $${totalPrice}</h3>`;
+    if (document.querySelector(".cart-product-list") != null) {
+      document.querySelector(".cart-product-list").innerHTML =
+        htmlItems.join("");
+    }
     //add click event listener to each remove button and change quantity
     const removeButtons = document.querySelectorAll(".remove-item");
     removeButtons.forEach((button) => {
@@ -81,6 +83,7 @@ function updateItemQuantity(productId, change) {
     } else {
       setLocalStorage("so-cart", cartItems);
       renderCartContents();
+      updateCartCounter();
     }
   }
 }
@@ -105,6 +108,25 @@ function cartItemTemplate(item) {
   </li>`;
   return newItem;
 }
+
+// export function renderData() {
+//   const cartItems = getLocalStorage("so-cart");
+//   let sortItems = cartItems;
+//   let uniqueIds = [];
+//   sortItems = sortItems.reduce((acc, item) => {
+//     if (!uniqueIds.includes(item.Id)) {
+//       uniqueIds.push(item.Id);
+//       acc.push(item);
+//       item.quantity = item.quantity || 1;
+//     } else {
+//       let existingItem = acc.find((i) => i.Id === item.Id);
+//       if (existingItem) {
+//         existingItem.quantity += 1;
+//       }
+//     }
+//     return acc;
+//   }, []);
+// }
 
 renderCartContents();
 async function init() {
