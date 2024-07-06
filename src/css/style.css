@@ -267,6 +267,19 @@ button, #formButton {
   font-size: 1.1em;
 }
 
+@keyframes cart-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.bounce {
+  animation: cart-bounce 0.5s;
+}
+
 /* Icon css*/
 
 .icon{

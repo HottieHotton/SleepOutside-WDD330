@@ -48,6 +48,7 @@ export default class ProductDetails {
     const alert = new Alert();
     alert.getAlerts();
     console.log(updateCartCounter());
+    animateCartIcon();
     updateCartCounter();
 
   }
@@ -63,30 +64,29 @@ export default class ProductDetails {
 
 export function updateCartCounter(){
   let cart = getLocalStorage("so-cart") || [];
-  // let sortItems = cart;
-  // let uniqueIds = [];
-  // sortItems = sortItems.reduce((acc, item) => {
-  //   if (!uniqueIds.includes(item.Id)) {
-  //     uniqueIds.push(item.Id);
-  //     acc.push(item);
-  //     item.quantity = item.quantity || 1;
-  //   } else {
-  //     let existingItem = acc.find((i) => i.Id === item.Id);
-  //     if (existingItem) {
-  //       existingItem.quantity += 1;
-  //     }
-  //   }
-  //   return acc;
-  // }, []).then(setLocalStorage('so-cart', sortItems));
+
   let cartCountElement = document.getElementById("cart-count");
   let total;
   if(cart[0].quantity != undefined){
     total=0;
     cart.forEach((count) =>{
       total += count.quantity
+      console.log("here")
     })
   }else if(cart.length){
     total = cart.length
+    console.log("there")
   }
   cartCountElement.textContent = total;
+}
+
+// Function to animate the cart icon
+export function animateCartIcon() {
+  const cartIcon = document.getElementById("cart-icon");
+  if (cartIcon) {
+    cartIcon.classList.add("bounce");
+    cartIcon.addEventListener("animationend", () => {
+      cartIcon.classList.remove("bounce");
+    }, { once: true });
+  }
 }

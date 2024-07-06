@@ -1,5 +1,5 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
-import { updateCartCounter } from "./productdetails.mjs";
+import { updateCartCounter, animateCartIcon } from "./productdetails.mjs";
 import { loadHeaderFooter } from "./utils.mjs";
 
 export function renderCartContents() {
@@ -71,19 +71,21 @@ function removeFromCart(productId) {
   setLocalStorage("so-cart", cartItems);
   renderCartContents();
   updateCartCounter();
+  animateCartIcon();
 }
 
 function updateItemQuantity(productId, change) {
   let cartItems = getLocalStorage("so-cart");
-  const item = cartItems.find((item) => item.Id === productId);
-  if (item) {
-    item.quantity += change;
-    if (item.quantity <= 0) {
+  const items = cartItems.find((item) => item.Id === productId);
+  if (items) {
+    items.quantity += change;
+    if (items.quantity <= 0) {
       removeFromCart(productId);
     } else {
       setLocalStorage("so-cart", cartItems);
       renderCartContents();
       updateCartCounter();
+      animateCartIcon();
     }
   }
 }
@@ -91,22 +93,22 @@ function updateItemQuantity(productId, change) {
 function cartItemTemplate(item) {
   const newItem = `
   <li class="cart-card divider">
-    <section class="cart-details">
-      <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
-        <h2 class="card__name">${item.Name}</h2>
+  <section class="cart-details">
+  <a href="/product_pages/index.html?product=${item.Id}" class="cart-card__image">
+  <h2 class="card__name">${item.Name}</h2>
         <img src="${item.Images.PrimaryMedium}" alt="${item.Name}"/>
       </a>
       <p class="cart-card__color">${item.Colors[0].ColorName}</p>
       <p class="cart-card__price">$${item.FinalPrice}</p>
       <span class="cart-card__quantity">Quantity: ${item.quantity}</span>
-    </section>
-    <div class="cart-card__quantity-controls">
+      </section>
+      <div class="cart-card__quantity-controls">
       <button class="remove-item" data-id="${item.Id}">X</button>
       <button class="increment-quantity" data-id="${item.Id}">+</button>
       <button class="decrement-quantity" data-id="${item.Id}">-</button>
-    </div>
-  </li>`;
-  return newItem;
+      </div>
+      </li>`;
+      return newItem;
 }
 
 // export function renderData() {
@@ -119,14 +121,21 @@ function cartItemTemplate(item) {
 //       acc.push(item);
 //       item.quantity = item.quantity || 1;
 //     } else {
-//       let existingItem = acc.find((i) => i.Id === item.Id);
-//       if (existingItem) {
-//         existingItem.quantity += 1;
-//       }
-//     }
-//     return acc;
-//   }, []);
+  //       let existingItem = acc.find((i) => i.Id === item.Id);
+  //       if (existingItem) {
+    //         existingItem.quantity += 1;
+    //       }
+    //     }
+    //     return acc;
+    //   }, []);
 // }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const button = document.getElementById("goToCheckout");
+  button.addEventListener("click", () => {
+    window.location.href = "../checkout/";
+  });
+});
 
 renderCartContents();
 async function init() {
