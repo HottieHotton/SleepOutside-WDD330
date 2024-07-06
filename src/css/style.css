@@ -344,3 +344,16 @@ footer {
   color: rgb(7, 53, 146);
   text-decoration-line: underline;
 }
+
+.checkout-summary ul li{
+  list-style-type: none;
+  margin: 15px;
+}
+
+#formButton{
+  margin-top: 10px;
+}
+
+.alert{
+  background-color: lightsalmon;
+}

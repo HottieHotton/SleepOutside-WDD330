@@ -47,7 +47,6 @@ export default class ProductDetails {
 
     const alert = new Alert();
     alert.getAlerts();
-    console.log(updateCartCounter());
     animateCartIcon();
     updateCartCounter();
 
@@ -67,15 +66,13 @@ export function updateCartCounter(){
 
   let cartCountElement = document.getElementById("cart-count");
   let total;
-  if(cart[0].quantity != undefined){
+  if(cart[0].quantity !== undefined){
     total=0;
     cart.forEach((count) =>{
       total += count.quantity
-      console.log("here")
     })
   }else if(cart.length){
     total = cart.length
-    console.log("there")
   }
   cartCountElement.textContent = total;
 }
