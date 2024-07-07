@@ -8,7 +8,24 @@ function productCardTemplate(product) {
         <h2 class="card__name">${product.Name}</h2>
         <p class="product-card__price">$${product.FinalPrice}</p>
       </a>
-    </li>`;
+      
+      <button class="modal-button" data-name="${product.Id}">Quick View</button>
+    </li>
+   
+    <section class="modal" data-target="${product.Id}">
+      <div class="modal-container">
+        <div class="modal-buttonContainer">
+          <button class="modal-close">X</button>
+        </div>
+        <img src="${product.Images.PrimaryMedium}" alt="Image of ${product.Name}">
+        <h2 class="card__name">${product.Name}</h2>
+        <p class="product__description">${product.DescriptionHtmlSimple}</p>
+        <p class="product-card__price">$${product.FinalPrice}</p>
+        <a href="/product_pages/index.html?product=${product.Id}">
+          <button class="modal-fullDetails">Full Details</button>
+        </a>
+      </div>
+    </section>`;
 }
 
 export default class ProductList {
@@ -58,6 +75,28 @@ export default class ProductList {
     // Clean list to avoid duplicated products
     this.listElement.innerHTML = "";
     renderListWithTemplate(productCardTemplate, this.listElement, list);
+
+    // MODAL QUICK VIEW
+    let previewContainer = document.querySelector(".product-list");
+    let proviewBox = previewContainer.querySelectorAll(".modal");
+    // SHOW MODAL
+    document.querySelectorAll(".product-list .product-card .modal-button").forEach(button => {
+      button.onclick = () => {
+        let name = button.getAttribute("data-name");
+        proviewBox.forEach(modal => {
+          let target = modal.getAttribute("data-target");
+          if(name == target) {
+            modal.classList.add("active");
+          }
+        })
+      }
+    })
+    // CLOSE MODAL
+    proviewBox.forEach(close => {
+      close.querySelector(".modal-close").onclick = () => {
+        close.classList.remove("active");
+      }
+    })
   }
 
   sortByNameAZ() {
