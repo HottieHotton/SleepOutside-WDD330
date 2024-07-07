@@ -73,3 +73,24 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function alertMessage(message, scroll = true) {
+  const alert = document.createElement("div");
+  alert.classList.add("alert");
+  alert.innerHTML = `<b>${message} <span>X</span></b>`;
+
+  alert.addEventListener("click", function (e) {
+    if (e.target.tagName == "SPAN") {
+      section.removeChild(this);
+    }
+  });
+  const section = document.querySelector("section");
+  section.prepend(alert);
+
+  if (scroll) window.scrollTo(0, 0);
+}
+
+export function removeAllAlerts() {
+  const alerts = document.querySelectorAll(".alert");
+  alerts.forEach((alert) => document.querySelector("section").removeChild(alert));
+}
