@@ -357,3 +357,18 @@ footer {
 .alert{
   background-color: lightsalmon;
 }
+
+#searchForm{
+  display: flex;
+}
+
+#searchCall{
+  height: 30px;
+  margin-top: 15px;
+}
+
+#searchButton{
+  /* height: 15px;
+  width: 15px; */
+  font-size: small;
+}

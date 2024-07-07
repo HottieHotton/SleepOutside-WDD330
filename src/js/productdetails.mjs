@@ -63,16 +63,16 @@ export default class ProductDetails {
 
 export function updateCartCounter(){
   let cart = getLocalStorage("so-cart") || [];
-
   let cartCountElement = document.getElementById("cart-count");
-  let total;
-  if(cart[0].quantity !== undefined){
-    total=0;
-    cart.forEach((count) =>{
-      total += count.quantity
-    })
-  }else if(cart.length){
-    total = cart.length
+  let total = 0;
+  if (cart.length > 0) {
+    if('quantity' in cart[0]){
+      cart.forEach((count) =>{
+        total += count.quantity
+      })
+    }else if(cart[0].quantity == undefined){
+      total = cart.length
+    }
   }
   cartCountElement.textContent = total;
 }

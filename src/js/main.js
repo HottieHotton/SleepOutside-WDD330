@@ -10,7 +10,11 @@ const listing = new ProductList("Tents", dataSource, element);
 listing.init();
 
 async function init(){
-  await loadHeaderFooter();
+  await loadHeaderFooter()
+  let search = document.getElementById("searchForm");
+  if (search) {
+    search.style.display = "none";
+  }
   await updateCartCounter();
 }
 
