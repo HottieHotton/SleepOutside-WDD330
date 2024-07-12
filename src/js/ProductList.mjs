@@ -47,9 +47,12 @@ export default class ProductList {
       );
       if (this.products.length > 0) {
         if (this.searchQuery != null) {
+          this.searchQuery = this.searchQuery.toLowerCase()
           let searchFilter = [];
           list.forEach((element) => {
-            if (element.Name.includes(this.searchQuery)) {
+            let name = element.Name;
+            name = name.toLowerCase()
+            if (name.includes(this.searchQuery)) {
               searchFilter.push(element);
             }
           });

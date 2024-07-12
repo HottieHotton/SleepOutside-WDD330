@@ -66,7 +66,7 @@ export function updateCartCounter(){
   let cartCountElement = document.getElementById("cart-count");
   let total = 0;
   if (cart.length > 0) {
-    if('quantity' in cart[0]){
+    if("quantity" in cart[0]){
       cart.forEach((count) =>{
         total += count.quantity
       })
